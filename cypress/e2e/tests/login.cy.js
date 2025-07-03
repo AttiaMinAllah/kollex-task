@@ -16,7 +16,8 @@ describe("Login Page", () => {
   });
 
   it("should login successfully with valid credentials", () => {
-    login("test.kollex@gmail.com", "TestK123#");
+    // Ideally I would use env variables for the credentials
+    login("test.kollex01@gmail.com", "TestBusin3ss#");
     cy.url().should("eq", Cypress.config("baseUrl"));
   });
 });
