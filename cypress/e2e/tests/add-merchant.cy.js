@@ -36,7 +36,7 @@ describe("Add Merchant for a new business(via registration flow) and an already 
   it("Should add merchant for a new business(via registration flow)", () => {
     cy.contains(registrationSelectors.registerLink).click();
     cy.url().should("include", "/registration");
-
+    // Fill out the registration form
     cy.get(registrationSelectors.companyInput).type(businessData.company);
     cy.get(registrationSelectors.firstNameInput).type(businessData.firstName);
     cy.get(registrationSelectors.lastNameInput).type(businessData.lastName);
@@ -46,7 +46,7 @@ describe("Add Merchant for a new business(via registration flow) and an already 
     );
     cy.get(registrationSelectors.termsCheckbox).check({ force: true });
     cy.get(registrationSelectors.submitButton).click();
-
+    // Set password on the next page
     cy.url().should("include", "/registration-set-password");
     cy.get(registrationSelectors.passwordInput).type(password);
     cy.get(registrationSelectors.repeatPasswordInput).type(password);
@@ -58,7 +58,7 @@ describe("Add Merchant for a new business(via registration flow) and an already 
     cy.url().should("eq", Cypress.config("baseUrl"));
     cy.get(registrationSelectors.popupCloseButton).click();
     cy.wait(500);
-
+    // Add merchant
     cy.get(addMerchantSelectors.addMerchantButton).click();
     cy.url().should(
       "eq",
@@ -88,7 +88,7 @@ describe("Add Merchant for a new business(via registration flow) and an already 
       "eq",
       Cypress.config("baseUrl") + "customers-with-merchants/search",
     );
-
+    // Search and select merchant
     cy.get(merchantSearchSelectors.merchantSearchForm).type("Lennard");
     cy.wait(1000);
     cy.get(merchantSearchSelectors.merchantSearchResultLennard).click();
